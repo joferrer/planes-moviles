@@ -1,11 +1,127 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import OperadoresLogos from '../components/OperadoresLogos.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+	<section>
+		<h1 class="text-center font-bold text-3xl">Compara entre operadores y encuentra el plan que buscas!</h1>
+		<OperadoresLogos />
+	</section>
+	<section>
+			
+	<section class="mt-10">
+		<div class="grid gap-20 sm:grid-cols-2 lg:grid-cols-3 mt-24">
+			<div class="relative h-32 bg-[var(--claro-bg)] rounded-lg flex flex-col text-center">
+				<h2 class="absolute font-extralight text-5xl -top-16">Claro</h2>
+				<div class="bg-[var(--card-bg)] p-5">
+					<h2 class="font-bold text-2xl">60 GB</h2>
+					<h3 class="font-bold ">44.900$ x mes</h3>
+				</div>
+								
+				<div class="text-left p-1">
+					<a href="" class="text-black hover:text-[var(--bordes-color-1)]">Saber más...</a>
+				</div>
+			</div>
+			<div class="relative h-32 bg-[var(--movistar-bg)] rounded-lg flex flex-col text-center">
+				<h2 class="absolute font-extralight text-5xl -top-16">Movistar</h2>
+				<div class="bg-[var(--card-bg)] p-5">
+					<h2 class="font-bold text-2xl">50 GB</h2>
+					<h3 class="font-bold ">22.995$ x 2 meses. Luego 45.000$</h3>
+				</div>
+								
+				<div class="text-left p-1">
+					<a href="" class="text-black hover:text-[var(--bordes-color-1)]">Saber más...</a>
+				</div>
+			</div>
+			<div class="relative h-32 bg-[var(--wom-bg)] rounded-lg flex flex-col text-center">
+				<h2 class="absolute font-extralight text-5xl -top-16">WOM</h2>
+				<div class="bg-[var(--card-bg)] p-5">
+					<h2 class="font-bold text-2xl">60 GB</h2>
+					<h3 class="font-bold ">35.000$ x 4 meses. Luego 44.990$</h3>
+				</div>
+								
+				<div class="text-left p-1">
+					<a href="" class="text-white hover:text-[var(--bordes-color-1)]">Saber más...</a>
+				</div>
+			</div>
+			
+		</div>
+
+	<section>
+	</section>
+	<section class="mt-10 flex flex-col justify-center">
+		<h2 class="text-2xl">Los planes más economicos de cada operador!</h2>
+
+		<table class="border-collapse md:table-fixed mt-5">
+			<caption class="caption-bottom font-extralight" >La Información de la tabla está basada las páginas web de cada operador a fecha de marzo de 2025</caption>
+			<thead>
+				<tr>
+					<th></th>
+					<th class="font-light text-2xl">Claro</th>
+					<th class="font-light text-2xl">Movistar</th>
+					<th class="font-light text-2xl">Tigo</th>
+					<th class="font-light text-2xl">WOM</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><strong>GB</strong></td>
+					<td>60 GB</td>
+					<td>50 GB</td>
+					<td>60 GB</td>
+					<td>60 GB</td>
+				</tr>
+				<tr>
+					<td><strong>PRECIO</strong></td>
+					<td>44.900$</td>
+					<td>22.995$ x 2 meses. Luego 45.000$</td>
+					<td>45.000$</td>
+					<td>35.000$ x 4 meses. Luego 44.990$</td>
+				</tr>
+				<tr>
+					<td><strong>APLICACIONES</strong></td>
+					<td>WhatsApp, Facebook y Twitter</td>
+					<td>Sin Información</td>
+					<td>Facebook y WhatsApp</td>
+					<td>Facebook, WhatsApp, Nequi y Daviplata</td>
+				</tr>
+				<tr>
+					<td><strong>MINUTOS</strong></td>
+					<td>Ilimitados</td>
+					<td>Ilimitados</td>
+					<td>Ilimitados</td>
+					<td>Ilimitados</td>
+				</tr>
+			</tbody>
+		</table>
+		
+	</section>
+
+
 </Layout>
+
+
+<style>
+	li::before {
+		content: "•";
+		color: var(--bordes-color-1);
+		font-weight: bold;
+		display: inline-block;
+		width: 1em;
+		
+	}
+	td{
+		padding: 0.5rem;
+		border: 1px solid;
+		border-color: white;
+	}
+	th{
+		padding: 0.5rem;
+
+	}
+</style>

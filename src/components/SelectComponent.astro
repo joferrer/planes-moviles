@@ -1,0 +1,16 @@
+---
+
+const options = [
+  { value: 'economicos', text: 'Más economicos' },
+  { value: 'ilimitados', text: 'Navegación ilimitada' },
+]
+
+const selected = 'economicos'
+---
+<select name="select" id="" class="text-white bg-black">
+  {
+    options.map(option => (
+      <option value={option.value} selected={selected === option.value}>{option.text}</option>
+    ))
+  }
+</select>

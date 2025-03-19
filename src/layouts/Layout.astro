@@ -3,7 +3,7 @@ import "../styles/global.css";
 import Analytics from '@vercel/analytics/astro'
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark:bg-black dark:text-white">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -30,10 +30,7 @@ import Analytics from '@vercel/analytics/astro'
 		--bordes-color-1: #5200ff;
 		--wom-bg: rgb(82 0 255 / 90%);
 	}
-	html{
-		background: var(--background);
-		color: #fff;
-	}
+	
 	body {
 		@apply grid place-items-center;
 	}

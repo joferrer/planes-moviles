@@ -1,16 +1,42 @@
 ---
+import {selectValor,seleccionOpciones} from '../stores/stores'
 
 const options = [
-  { value: 'economicos', text: 'Más economicos' },
-  { value: 'ilimitados', text: 'Navegación ilimitada' },
+  { value: seleccionOpciones.Economicos, text: 'Más economicos' },
+  { value: seleccionOpciones.Ilimitados, text: 'Navegación ilimitada' },
 ]
 
-const selected = 'economicos'
+const selectValue = selectValor.value
+
+
 ---
-<select name="select" id="" class="text-white bg-black">
+<select 
+  name="select" id="filtroSelect" 
+  class="dark:text-white dark:bg-black rounded-md border border-gray-600 p-2" >
   {
     options.map(option => (
-      <option value={option.value} selected={selected === option.value}>{option.text}</option>
+      <option 
+      value={option.value} 
+      selected={selectValue === option.value}
+      >
+        {option.text}
+      </option>
     ))
   }
 </select>
+
+<script>
+  import { selectValor,seleccionOpciones } from '../stores/stores'
+
+  const handleChange =(e:Event) => {
+  const {value} = e.target as HTMLSelectElement
+  if(!Object.values(seleccionOpciones).includes(value as seleccionOpciones)){
+    throw new Error('Valor no permitido')
+  }
+  selectValor.set(value as seleccionOpciones)
+}
+
+
+  const select = document.getElementById('filtroSelect')
+  select?.addEventListener('change', handleChange)
+</script>

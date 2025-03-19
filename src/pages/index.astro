@@ -3,9 +3,17 @@ import Layout from '../layouts/Layout.astro';
 import OperadoresLogos from '../components/OperadoresLogos.astro';
 import TablaDeComparacion from '../components/TablaDeComparacion.astro';
 import SelectComponent from '../components/SelectComponent.astro';
+import Economicos from '../components/Economicos.astro';
+import { selectValor,seleccionOpciones } from '../stores/stores';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const {value : selectV , subscribe} = selectValor
+let valor = selectV
+
+subscribe(value => {
+	valor = value
+})
+
+
 ---
 
 <Layout>
@@ -13,49 +21,16 @@ import SelectComponent from '../components/SelectComponent.astro';
 		<h1 class="text-center font-bold text-3xl">Compara entre los operadores de Colombia y encuentra el plan que buscas!</h1>
 		<OperadoresLogos />
 	</section>
-	<section>
-			
-	<section class="mt-10">
+	<section class="flex gap-3 justify-center mt-10">
+		<h3 class="text-2xl">¿Qué estás buscando?</h3>
 		<SelectComponent/>
-<h2 class="text-2xl">Los más economicos</h2>
-		<div class="grid gap-20 sm:grid-cols-2 lg:grid-cols-3 mt-24">
-			<div class="relative h-32 bg-[var(--claro-bg)] rounded-lg flex flex-col text-center">
-				<h2 class="absolute font-extralight text-5xl -top-16">Claro</h2>
-				<div class="bg-[var(--card-bg)] p-5">
-					<h2 class="font-bold text-2xl">60 GB</h2>
-					<h3 class="font-bold ">44.900$ x mes</h3>
-				</div>
-								
-				<div class="text-left p-1">
-					<a href="https://www.claro.com.co/personas/servicios/servicios-moviles/postpago/" class="text-black hover:text-[var(--bordes-color-1)]">Saber más...</a>
-				</div>
-			</div>
-			<div class="relative h-32 bg-[var(--movistar-bg)] rounded-lg flex flex-col text-center">
-				<h2 class="absolute font-extralight text-5xl -top-16">Movistar</h2>
-				<div class="bg-[var(--card-bg)] p-5">
-					<h2 class="font-bold text-2xl">50 GB</h2>
-					<h3 class="font-bold ">22.995$ x 2 meses. Luego 45.000$</h3>
-				</div>
-								
-				<div class="text-left p-1">
-					<a href="https://www.movistar.com.co/pospago" class="text-black hover:text-[var(--bordes-color-1)]">Saber más...</a>
-				</div>
-			</div>
-			<div class="relative h-32 bg-[var(--wom-bg)] rounded-lg flex flex-col text-center">
-				<h2 class="absolute font-extralight text-5xl -top-16">WOM</h2>
-				<div class="bg-[var(--card-bg)] p-5">
-					<h2 class="font-bold text-2xl">60 GB</h2>
-					<h3 class="font-bold ">35.000$ x 4 meses. Luego 44.990$</h3>
-				</div>
-								
-				<div class="text-left p-1">
-					<a href="https://www.wom.co/planes-pospago/linea-nueva" class="text-white hover:text-[var(--bordes-color-1)]">Saber más...</a>
-				</div>
-			</div>
-			
-		</div>
 
-	<section>
+	</section>
+		
+	<section class="mt-10" id="infoFiltrada">
+		<div id="economicosSeccion" class="hidden">
+			<Economicos  />
+		</div>
 	</section>
 	<section class="mt-10 flex flex-col justify-center">
 
@@ -65,7 +40,22 @@ import SelectComponent from '../components/SelectComponent.astro';
 
 
 </Layout>
+<script>
+	import {selectValor, seleccionOpciones} from '../stores/stores'
+	const {value : selectV , subscribe} = selectValor
 
+	const infoFiltrada = document.getElementById('infoFiltrada')
+	const economicosSeccion = document.getElementById('economicosSeccion')
+
+	infoFiltrada && subscribe(seleccion =>{
+		if(seleccion === seleccionOpciones.Economicos){
+			economicosSeccion?.setAttribute('class','block')
+		}else if(seleccion === seleccionOpciones.Ilimitados){
+			economicosSeccion?.setAttribute('class','hidden')
+		}
+	})
+
+</script>
 
 <style>
 	li::before {
